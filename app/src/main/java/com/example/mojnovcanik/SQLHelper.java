@@ -74,4 +74,30 @@ public class SQLHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM "+TABLE_NAME);
 
     }
+
+    Cursor ucitajRashode(){
+        String query = "SELECT * FROM "+TABLE_NAME+" WHERE "+COLUMN_IZNOS+" LIKE '-%'";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+
+        if(db != null){
+            cursor = db.rawQuery(query,null);
+        }
+        return cursor;
+    }
+
+    Cursor ucitajPrihode(){
+        String query = "SELECT * FROM "+TABLE_NAME+" WHERE NOT "+COLUMN_IZNOS+" LIKE '-%'";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+
+        if(db != null){
+            cursor = db.rawQuery(query,null);
+        }
+        return cursor;
+    }
 }

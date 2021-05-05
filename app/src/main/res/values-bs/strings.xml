@@ -13,6 +13,9 @@
     <string name="opis">Opis</string>
     <string name="unesi">Unesi</string>
     <string name="select_language">Izaberite jezik : </string>
+    <string name="prihodi">Prihodi</string>
+    <string name="rashodi">Rashodi</string>
+    <string name="sve">Sve</string>
 
 
 </resources>

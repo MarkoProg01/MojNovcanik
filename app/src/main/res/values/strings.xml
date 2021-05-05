@@ -12,4 +12,7 @@
     <string name="opis">Description</string>
     <string name="unesi">Add</string>
     <string name="select_language">Select language:</string>
+    <string name="prihodi">Income</string>
+    <string name="rashodi">Expenditure </string>
+    <string name="sve">All</string>
 </resources>

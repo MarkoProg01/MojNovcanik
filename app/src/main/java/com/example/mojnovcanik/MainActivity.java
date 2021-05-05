@@ -25,6 +25,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -49,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottom_navigation;
 
+    Chip chipSve,chipPrihodi,chipRashodi;
+    ChipGroup chipGroup;
+
 
 
     @Override
@@ -61,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         tvUkupanNovac = findViewById(R.id.tvUkupanNovac);
         bottom_navigation = findViewById(R.id.bottom_navigation);
+
+
 
         bottom_navigation.setSelectedItemId(R.id.page_1);
 
@@ -82,10 +89,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         iznos = new ArrayList<>();
         opis = new ArrayList<>();
         datum = new ArrayList<>();
+
+        chipSve = findViewById(R.id.chipSve);
+        chipPrihodi = findViewById(R.id.chipPrihodi);
+        chipRashodi = findViewById(R.id.chipRashodi);
+
 
 
 
@@ -103,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
         sqlHelper = new SQLHelper(this);
 
-        storeDataInArrays();
+        storeDataInArrays(sqlHelper.readAllData());
 
         /*adapter = new recyclerAdapter(MainActivity.this,this,iznos,opis,datum);
         recyclerView.setAdapter(adapter);
@@ -114,7 +125,43 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
+        chipSve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                storeDataInArrays(sqlHelper.readAllData());
+
+                recyclerView.setAdapter(adapter);
+
+
+            }
+        });
+        chipPrihodi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Cursor cursor = sqlHelper.ucitajPrihode();
+               storeDataInArrays(sqlHelper.ucitajPrihode());
+                recyclerView.setAdapter(adapter);
+            }
+        });
+        chipRashodi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              //  Cursor cursor = sqlHelper.ucitajRashode();
+               storeDataInArrays(sqlHelper.ucitajRashode());
+               recyclerView.setAdapter(adapter);
+
+
+
+            }
+
+
+        });
+
+
+
     }
+
+
 
 
 
@@ -143,12 +190,15 @@ public class MainActivity extends AppCompatActivity {
 
 //kraj promjene jezika
 
-    void storeDataInArrays() {
-        Cursor cursor = sqlHelper.readAllData();
+    void storeDataInArrays(Cursor cursor) {
+       // Cursor cursor = sqlHelper.readAllData();
         if (cursor.getCount() == 0) {
             Toast.makeText(this, "No data!", Toast.LENGTH_SHORT).show();
 
         } else {
+            iznos.clear();
+            opis.clear();
+            datum.clear();
 
             while (cursor.moveToNext()) {
                 //book_id.add(cursor.getString(0));

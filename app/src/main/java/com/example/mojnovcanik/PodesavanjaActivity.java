@@ -42,13 +42,13 @@ public class PodesavanjaActivity extends AppCompatActivity {
         radioenglis.setOnCheckedChangeListener((buttonView, one_isChecked) -> {
             SaveIntoSharedPref("ENGLISH_ONE", one_isChecked);
             setLocale("bs");
-
+            recreate();
         });
 
         radioexyu.setOnCheckedChangeListener((buttonView, two_isChecked) -> {
             SaveIntoSharedPref("EXYU_ONE", two_isChecked);
             setLocale("en");
-
+            recreate();
         });
         ///ucitaj jezik
 
