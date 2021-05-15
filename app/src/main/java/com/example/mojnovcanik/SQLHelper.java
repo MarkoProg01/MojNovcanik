@@ -13,8 +13,8 @@ public class SQLHelper extends SQLiteOpenHelper {
     Context context;
     private static final String DATABASE_NAME = "NovcanikBazav1.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "Novcanik";
-    private static final String COLUMN_IZNOS = "iznos";
+    public static final String TABLE_NAME = "Novcanik";
+    public static final String COLUMN_IZNOS = "iznos";
     private static final String COLUMN_OPIS = "opis";
     private static final String COLUMN_DATUM = "datum";
 
@@ -56,8 +56,8 @@ public class SQLHelper extends SQLiteOpenHelper {
         }
     }
 
-    Cursor readAllData(){
-        String query = "SELECT * FROM "+TABLE_NAME;
+    Cursor readAllData(String query){
+       // String query = "SELECT * FROM "+TABLE_NAME;
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -75,29 +75,5 @@ public class SQLHelper extends SQLiteOpenHelper {
 
     }
 
-    Cursor ucitajRashode(){
-        String query = "SELECT * FROM "+TABLE_NAME+" WHERE "+COLUMN_IZNOS+" LIKE '-%'";
 
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = null;
-
-        if(db != null){
-            cursor = db.rawQuery(query,null);
-        }
-        return cursor;
-    }
-
-    Cursor ucitajPrihode(){
-        String query = "SELECT * FROM "+TABLE_NAME+" WHERE NOT "+COLUMN_IZNOS+" LIKE '-%'";
-
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = null;
-
-        if(db != null){
-            cursor = db.rawQuery(query,null);
-        }
-        return cursor;
-    }
 }

@@ -12,28 +12,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mojnovcanik.Adapter.recyclerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     ArrayList<String> iznos;
     ArrayList<String> opis;
@@ -53,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     Chip chipSve,chipPrihodi,chipRashodi;
     ChipGroup chipGroup;
+    private long backPressedTime;
 
 
 
@@ -114,11 +114,9 @@ public class MainActivity extends AppCompatActivity {
 
         sqlHelper = new SQLHelper(this);
 
-        storeDataInArrays(sqlHelper.readAllData());
+        storeDataInArrays(sqlHelper.readAllData("SELECT * FROM "+sqlHelper.TABLE_NAME));
 
-        /*adapter = new recyclerAdapter(MainActivity.this,this,iznos,opis,datum);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));*/
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new recyclerAdapter(MainActivity.this, this, iznos, opis, datum);
@@ -128,8 +126,7 @@ public class MainActivity extends AppCompatActivity {
         chipSve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                storeDataInArrays(sqlHelper.readAllData());
-
+                storeDataInArrays(sqlHelper.readAllData("SELECT * FROM "+sqlHelper.TABLE_NAME));
                 recyclerView.setAdapter(adapter);
 
 
@@ -139,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Cursor cursor = sqlHelper.ucitajPrihode();
-               storeDataInArrays(sqlHelper.ucitajPrihode());
+                storeDataInArrays(sqlHelper.readAllData("SELECT * FROM "+sqlHelper.TABLE_NAME+" WHERE NOT "+sqlHelper.COLUMN_IZNOS+" LIKE '-%'"));
                 recyclerView.setAdapter(adapter);
             }
         });
@@ -147,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
               //  Cursor cursor = sqlHelper.ucitajRashode();
-               storeDataInArrays(sqlHelper.ucitajRashode());
+                storeDataInArrays(sqlHelper.readAllData("SELECT * FROM "+sqlHelper.TABLE_NAME+" WHERE "+sqlHelper.COLUMN_IZNOS+" LIKE '-%'"));
                recyclerView.setAdapter(adapter);
 
 
@@ -159,6 +156,23 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        View parentLayout = findViewById(android.R.id.content);
+
+
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            //backToast.cancel();
+            super.onBackPressed();
+
+            return;
+        } else {
+            Snackbar snackbar = Snackbar.make(parentLayout,"Klikni još jednom za izlaz",Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
+        backPressedTime = System.currentTimeMillis();
     }
 
 

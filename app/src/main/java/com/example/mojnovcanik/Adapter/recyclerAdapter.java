@@ -1,4 +1,4 @@
-package com.example.mojnovcanik;
+package com.example.mojnovcanik.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,8 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mojnovcanik.R;
 
 import java.util.ArrayList;
 
