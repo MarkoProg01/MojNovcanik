@@ -25,29 +25,36 @@
 
         <TextView
             android:id="@+id/settingsText"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="11dp"
-            android:text="TextView"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
             android:maxLines="3"
-            android:textSize="20sp"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintEnd_toStartOf="@+id/divider"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/settingsImageView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/settingsSubText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="11dp"
             android:layout_marginTop="9dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="28dp"
+            android:maxLines="3"
+            android:singleLine="false"
             android:text="TextView"
             android:textSize="15sp"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintEnd_toStartOf="@+id/divider"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/settingsImageView"
             app:layout_constraintTop_toBottomOf="@+id/settingsText"
@@ -63,6 +70,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.514"
             app:srcCompat="@drawable/ic_arrow" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="1dp"
+            android:layout_height="81dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
