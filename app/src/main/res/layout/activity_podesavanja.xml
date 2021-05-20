@@ -6,9 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".PodesavanjaActivity">
 
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:background="#f2f2f2"
+        android:elevation="0dp">
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,44 +27,28 @@
         app:menu="@menu/bottom_navigation_menu"
         tools:ignore="MissingConstraints" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
-        android:gravity="center_horizontal"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/settingsRecyclerView"
+        android:layout_width="418dp"
+        android:layout_height="597dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RadioButton
-            android:id="@+id/radio_button_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="English" />
-
-        <RadioButton
-            android:id="@+id/radio_button_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ExYU" />
-
-        <RadioButton
-            android:id="@+id/radio_button_3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Skriveni"
-            android:visibility="invisible" />
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/select_language"
-        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+        app:contentInsetStartWithNavigation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/Theme.Design.Light"
+        app:title="@string/app_name"
+        app:titleTextColor="#0288d1" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

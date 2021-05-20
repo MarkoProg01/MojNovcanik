@@ -16,6 +16,7 @@
     <string name="prihodi">Prihodi</string>
     <string name="rashodi">Rashodi</string>
     <string name="sve">Sve</string>
+    <string name="snackBar_text">Klikni još jednom za izlaz</string>
 
 
 </resources>

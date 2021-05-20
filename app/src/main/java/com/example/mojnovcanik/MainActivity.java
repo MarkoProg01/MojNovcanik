@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity  {
                     case R.id.page_2:
                         startActivity(new Intent(getApplicationContext(),PodesavanjaActivity.class));
                         overridePendingTransition(0,0);
+
                 }
 
                 return false;
@@ -116,8 +117,6 @@ public class MainActivity extends AppCompatActivity  {
 
         storeDataInArrays(sqlHelper.readAllData("SELECT * FROM "+sqlHelper.TABLE_NAME));
 
-
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new recyclerAdapter(MainActivity.this, this, iznos, opis, datum);
         recyclerView.setAdapter(adapter);
@@ -147,8 +146,6 @@ public class MainActivity extends AppCompatActivity  {
                 storeDataInArrays(sqlHelper.readAllData("SELECT * FROM "+sqlHelper.TABLE_NAME+" WHERE "+sqlHelper.COLUMN_IZNOS+" LIKE '-%'"));
                recyclerView.setAdapter(adapter);
 
-
-
             }
 
 
@@ -162,14 +159,13 @@ public class MainActivity extends AppCompatActivity  {
     public void onBackPressed() {
         View parentLayout = findViewById(android.R.id.content);
 
-
         if (backPressedTime + 2000 > System.currentTimeMillis()) {
             //backToast.cancel();
-            super.onBackPressed();
-
+            finish();
             return;
+
         } else {
-            Snackbar snackbar = Snackbar.make(parentLayout,"Klikni još jednom za izlaz",Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(parentLayout, R.string.snackBar_text,Snackbar.LENGTH_LONG);
             snackbar.show();
         }
         backPressedTime = System.currentTimeMillis();
