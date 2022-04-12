@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity  {
 
     ///ucitaj jezik aplikacije
     public void loadLocale() {
-        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("Podešavanja", Activity.MODE_PRIVATE);
         String language = prefs.getString("MY_Lang", "");
         setLocale(language);
 
